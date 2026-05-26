@@ -1,0 +1,51 @@
+<Window x:Class="sberbank.View.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Сбербанк - авторизация"
+        Width="560"
+        Height="560"
+        MinWidth="520"
+        MinHeight="520"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="28">
+            <Border Background="{StaticResource SurfaceBrush}"
+                    CornerRadius="8"
+                    Padding="28"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="1"
+                    MinHeight="440">
+                <StackPanel>
+                    <TextBlock Text="ООО Сбербанк"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource PrimaryBrush}"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Вход в банковскую информационную систему"
+                               Foreground="{StaticResource MutedBrush}"
+                               HorizontalAlignment="Center"
+                               Margin="0,6,0,24"/>
+
+                    <Label Content="Логин"/>
+                    <TextBox x:Name="LoginTextBox"/>
+
+                    <Label Content="Пароль"/>
+                    <PasswordBox x:Name="PasswordBox"/>
+
+                    <Button Content="Войти"
+                            Click="LoginButton_Click"
+                            Height="40"
+                            Margin="0,14,0,4"/>
+                    <Button Content="Регистрация клиента"
+                            Style="{StaticResource SecondaryButton}"
+                            Click="OpenRegistrationButton_Click"
+                            Height="38"
+                            Margin="0,4,0,0"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Window>

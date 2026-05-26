@@ -1,0 +1,132 @@
+ПЕРЕНОС WPF-ПРОЕКТА SBERBANK НА ДРУГОЙ КОМПЬЮТЕР
+
+Что находится в этой папке
+--------------------------
+В папке sberbank лежит готовый проект для переноса:
+
+- WPF .NET Framework 4.8 проект;
+- исходный код C#;
+- XAML-окна и страницы;
+- SQL-скрипты для создания базы;
+- файл подключения ConnectionStrings.config;
+- инструкция TRANSFER_TO_NEW_PC.md.
+
+Папки bin и obj специально не нужны. Visual Studio создаст их заново при сборке.
+
+
+1. Скопируйте проект
+--------------------
+Скопируйте папку sberbank на новый компьютер, например:
+
+C:\Users\<имя_пользователя>\source\repos\sberbank\sberbank
+
+Можно положить и в другое место, главное потом открыть файл sberbank.csproj.
+
+
+2. Создайте базу данных
+-----------------------
+На новом компьютере откройте SQL Server Management Studio.
+
+Подключение:
+
+Server name: WS105305\SQLEXPRESS
+Authentication: SQL Server Authentication
+Login: SA
+Password: введите ваш пароль
+
+После подключения:
+
+1. Откройте файл:
+   sberbank\Sql\SberbankDB_SchemaAndData.sql
+
+2. Нажмите Execute / Выполнить.
+
+Скрипт создаст базу SberbankDB, все таблицы, связи, ключи и тестовые данные.
+
+Важно: если база SberbankDB уже существует, скрипт удалит ее и создаст заново.
+
+
+3. Вставьте пароль от SA
+------------------------
+Откройте файл:
+
+sberbank\ConnectionStrings.config
+
+Найдите:
+
+Password=PUT_SA_PASSWORD_HERE
+
+Замените PUT_SA_PASSWORD_HERE на пароль пользователя SA.
+
+Должно получиться примерно так:
+
+Data Source=WS105305\SQLEXPRESS;Initial Catalog=SberbankDB;User ID=SA;Password=ваш_пароль;Encrypt=False;TrustServerCertificate=True
+
+Если в пароле есть специальные символы, в XML их надо заменить:
+
+&  -> &amp;
+<  -> &lt;
+>  -> &gt;
+"  -> &quot;
+
+
+4. Откройте проект в Visual Studio
+----------------------------------
+1. Откройте Visual Studio Community 2022.
+2. Нажмите Open a project or solution.
+3. Выберите файл:
+   sberbank\sberbank.csproj
+
+В проекте нет .sln файла, это нормально. Открывайте именно .csproj.
+
+
+5. Соберите и запустите
+-----------------------
+В Visual Studio:
+
+1. Build -> Build sberbank.
+2. Если ошибок нет, нажмите Start.
+
+Тестовые пользователи:
+
+Admin / Admin1!
+ivanov / User1!
+petrova / Client2!
+
+
+6. Проверка работы
+------------------
+После запуска:
+
+1. Войдите под ivanov / User1!.
+2. Откройте вкладку Услуги.
+3. Проверьте, что карточки услуг загрузились.
+4. Нажмите Оставить заявку.
+5. Проверьте, что заявка создалась.
+
+
+Если база не подключается
+-------------------------
+Проверьте:
+
+1. SQL Server запущен.
+2. Имя сервера точно WS105305\SQLEXPRESS.
+3. Включена SQL Server Authentication или Mixed Mode.
+4. Пользователь SA включен.
+5. Пароль SA введен правильно.
+6. В ConnectionStrings.config заменен PUT_SA_PASSWORD_HERE.
+7. База SberbankDB создана через SQL-скрипт.
+
+Если хотите использовать Windows Authentication вместо SA, замените строку подключения на:
+
+Data Source=WS105305\SQLEXPRESS;Initial Catalog=SberbankDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True
+
+Но тогда у вашего Windows-пользователя должны быть права на базу SberbankDB.
+
+
+Важно про Entity Framework
+--------------------------
+В этом проекте Entity Framework и EDMX не используются.
+Ничего обновлять в EDMX не нужно.
+Проект работает через обычный ADO.NET SqlConnection.
+

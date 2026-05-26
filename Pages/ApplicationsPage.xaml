@@ -1,0 +1,16 @@
+<Page x:Class="sberbank.Pages.ApplicationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Заявки">
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="Мои заявки" FontSize="24" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"/>
+            <TextBlock Text="История заявок клиента и текущие статусы" Foreground="{StaticResource MutedBrush}" Margin="0,4,0,12"/>
+        </StackPanel>
+        <DataGrid x:Name="ApplicationsDataGrid" Grid.Row="1" IsReadOnly="True"/>
+    </Grid>
+</Page>

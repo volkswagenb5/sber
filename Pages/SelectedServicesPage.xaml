@@ -1,0 +1,9 @@
+<Page x:Class="sberbank.Pages.SelectedServicesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Выбранные услуги">
+    <Grid Margin="28">
+        <TextBlock Text="Выбранные услуги оформляются как заявки на странице банковских продуктов."
+                   FontSize="18" TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}"/>
+    </Grid>
+</Page>

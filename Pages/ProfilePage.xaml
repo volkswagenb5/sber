@@ -1,0 +1,45 @@
+<Page x:Class="sberbank.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Профиль">
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="28">
+            <Border Background="{StaticResource SurfaceBrush}"
+                    CornerRadius="8"
+                    Padding="24"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="1"
+                    HorizontalAlignment="Left"
+                    MaxWidth="560"
+                    MinWidth="420"
+                    VerticalAlignment="Top">
+                <StackPanel>
+                    <TextBlock Text="Профиль клиента"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource PrimaryBrush}"/>
+                    <TextBlock Text="Данные текущего пользователя"
+                               Foreground="{StaticResource MutedBrush}"
+                               Margin="0,4,0,18"/>
+
+                    <Label Content="ФИО"/>
+                    <TextBox x:Name="FullNameTextBox"/>
+                    <Label Content="Телефон"/>
+                    <TextBox x:Name="PhoneTextBox"/>
+                    <Label Content="Email"/>
+                    <TextBox x:Name="EmailTextBox"/>
+                    <Label Content="Логин"/>
+                    <TextBox x:Name="LoginTextBox"/>
+                    <Label Content="Пароль"/>
+                    <PasswordBox x:Name="PasswordBox"/>
+
+                    <Button Content="Сохранить изменения"
+                            Click="SaveButton_Click"
+                            Height="40"
+                            Margin="0,12,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>
